@@ -1,0 +1,22 @@
+{% extends 'books/base.html' %}
+
+{% block content %}
+<h2>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Book</h2>
+
+<form method="post" class="mt-4">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    {% for field in form %}
+        <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">💾 Save</button>
+    <a href="{% url 'book_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
+
