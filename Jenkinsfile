@@ -47,4 +47,23 @@ pipeline {
             }
         }  
     }
+        post {
+        always {
+            mail to: 'subnag77@gmail.com',
+                 subject: "Job '${JOB_NAME}' (#${BUILD_NUMBER}) Status",
+                 body: "Visit ${BUILD_URL} to view details."
+        }
+
+        success {
+            mail to: 'subnag77@gmail.com',
+                 subject: "✅ BUILD SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
+                 body: "Build #${BUILD_NUMBER} succeeded.\nCheck: ${BUILD_URL}"
+        }
+
+        failure {
+            mail to: 'subnag77@gmail.com',
+                 subject: "❌ BUILD FAILED: ${JOB_NAME} #${BUILD_NUMBER}",
+                 body: "Build #${BUILD_NUMBER} failed.\nCheck: ${BUILD_URL}"
+        }
+    }
 }
