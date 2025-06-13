@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'ubuntu-slave-node' }
 
     environment {
         dockerImage = "subashn77/bookmanagement"
