@@ -11,8 +11,8 @@ pipeline {
             steps {
                 echo "Building image using Docker Compose"
                 sh '''
-		whoami
-                    docker compose build
+	            whoami
+                    docker compose -f docker-cpmpose.yml build
                     docker tag ${COMPOSE_PROJECT_NAME}-web:latest $dockerImage:$BUILD_NUMBER
                 '''
             }
